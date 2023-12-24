@@ -4,9 +4,8 @@ _Initial draft_
 
 ## Overview
 
-This project is an effort to mimic a streaming analytics pipeline. In general, this pipeline will stream data from *
-*OLTP**
-database to **OLAP** database, which has the following components:
+This project is an effort to mimic a streaming analytics pipeline. In general, this pipeline will stream data from 
+**OLTP** database to **OLAP** database, which has the following details:
 
 1. **OLTP**: **Postgresql** will serve as a producer. A **replication** mechanism can be implemented to ensure the high
    availability - if the primary server fails, one of the stand-bys can take over. There are two kinds of replication in
