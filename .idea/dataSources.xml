@@ -3,6 +3,7 @@
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="Hive Metastore" read-only="true" uuid="fac4a88e-7233-4a3a-97ce-ad10c4d6c845">
       <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
       <remarks>Wrapper For Hive Metastore from Big Data Tools plugin</remarks>
       <jdbc-driver>com.dbschema.ZeppelinSparkJdbcDriver</jdbc-driver>
       <jdbc-url>Hive Metastore@HiveMetastoreConnections@-5987839695747963852</jdbc-url>
@@ -10,6 +11,20 @@
         <property name="forceUseDriverIcon" value="true" />
         <property name="connectionId" value="Hive Metastore@HiveMetastoreConnections@-5987839695747963852" />
       </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="primary_server" uuid="a90be507-e20a-4a1b-ab61-ddf09de261a4">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="standby_server" uuid="a00974a9-baf8-4a3c-90b5-4ce4daab66d5">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5433/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

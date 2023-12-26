@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  primary_postgres:
+    image: 'bitnami/postgresql:latest'
+    container_name: primary_postgres
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=abc123
+      - POSTGRESQL_REPLICATION_MODE=master
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=abc123
+      - POSTGRESQL_USERNAME=sonle
+      - POSTGRESQL_PASSWORD=sonle123
+      - POSTGRESQL_DATABASE=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./data/postgresql/primary_server:/bitnami/postgresql
+      - ./data/postgresql/primary_server/conf/:/bitnami/postgresql/conf/
+#      - ./containers/postgresql/primary_server/primary_init.sql:/docker-entrypoint-initdb.d/primary_init.sql:ro
+#    networks:
+#      - default
+
+  standby_postgres:
+    image: 'bitnami/postgresql:latest'
+    container_name: standby_postgres
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=abc123
+      - POSTGRESQL_MASTER_HOST=primary_postgres
+      - POSTGRESQL_REPLICATION_MODE=slave
+      - POSTGRESQL_REPLICATION_USER=replicator
+      - POSTGRESQL_REPLICATION_PASSWORD=abc123
+      - POSTGRESQL_USERNAME=sonle
+      - POSTGRESQL_PASSWORD=sonle123
+      - POSTGRESQL_DATABASE=postgres
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./data/postgresql/standby_server:/bitnami/postgresql
+      - ./data/postgresql/standby_server/conf/:/bitnami/postgresql/conf/
+    depends_on:
+    - primary_postgres
+#    networks:
+#        ipv4_address: 192.168.0.3
+
+#networks:
+#  default:
+#    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 192.168.0.0/20
+#          gateway: 192.168.0.1
